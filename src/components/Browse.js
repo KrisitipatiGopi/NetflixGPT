@@ -1,9 +1,16 @@
-import React from 'react'
-
+import React from "react";
+import Header from "./Header";
+import useNowPlayingMovies from "../customHooks/useNowPlayingMovies";
+import VideoContainer from "./VedioContainer";
 const Browse = () => {
-  return (
-    <div>Browse</div>
-  )
-}
+  useNowPlayingMovies();
 
-export default Browse
+  return (
+    <div>
+      <Header />
+      <VideoContainer />
+    </div>
+  );
+};
+
+export default Browse;
