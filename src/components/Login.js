@@ -92,7 +92,7 @@ const Login = () => {
       <div className="flex flex-col items-center justify-center w-full">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="flex flex-col justify-center bg-black w-11/12 md:w-4/12 gap-8 p-8 rounded-md bg-opacity-80 shadow-lg"
+          className="flex flex-col justify-center mt-32 bg-black w-11/12 md:w-4/12 gap-8 p-8 rounded-md bg-opacity-80 shadow-lg"
         >
           <h1 className="text-white text-3xl font-bold mb-4">
             {isLoggedIn ? "Sign In" : "Sign Up"}

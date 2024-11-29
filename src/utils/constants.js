@@ -12,6 +12,39 @@ export const background_url =
   };
 
   
-//const data = "https://api.themoviedb.org/3/movie/{movie_id}/videos";
-  
+export const image_url = "https://image.tmdb.org/t/p/w500"
+
+export const translations = {
+  en: {
+    welcome: "Welcome",
+    logout: "Logout",
+    play: "Play",
+    moreInfo: "More Info",
+    nowPlaying: "Now Playing",
+    topRated: "Top Rated",
+    upComing: "Upcoming",
+    popular: "Popular",
+  },
+  hi: {
+    welcome: "स्वागत है",
+    logout: "लॉगआउट",
+    play: "चलाएं",
+    moreInfo: "अधिक जानकारी",
+    nowPlaying: "अब चल रहा है",
+    popular: "लोकप्रिय",
+    topRated: "सर्वश्रेष्ठ रेटेड",
+    upComing: "आगामी",
+  },
+  te: {
+    welcome: "స్వాగతం",
+    logout: "లాగ్అవుట్",
+    play: "ప్లే",
+    moreInfo: "మరింత సమాచారం",
+    nowPlaying: "ఇప్పుడే ప్రదర్శన",
+    popular: "ప్రసిద్ధమైనవి",  
+    topRated: "అత్యుత్తమ రేటింగ్",
+    upComing: "రాబోయేవి", 
+  },
+};
+
  

@@ -1,28 +1,28 @@
 import { useEffect } from "react";
 import { api_options } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { addNowPlayingMovies } from "../utils/movieSlice";
+import {  addUpcomingMovies } from "../utils/movieSlice";
 
-const useNowPlayingMovies = () => {
+const useUpcomingMovies = () => {
   const dispatch = useDispatch();
 
-  const getNowPlayingMovies = async () => {
+  const getUpComingMovies = async () => {
     try {
       const data = await fetch(
-        "https://api.themoviedb.org/3/movie/now_playing?page=1",
+        "https://api.themoviedb.org/3/movie/upcoming?page=1",
         api_options
       );
       const json = await data.json();
       //console.log(json);
-      dispatch(addNowPlayingMovies(json.results))
+      dispatch(addUpcomingMovies(json.results))
     } catch (error) {
       console.error("Error fetching movies:", error);
     }
   };
 
   useEffect(() => {
-    getNowPlayingMovies(); 
+    getUpComingMovies(); 
   }, []);
 };
 
-export default useNowPlayingMovies;
+export default useUpcomingMovies;
