@@ -1,26 +1,25 @@
-import React, { useEffect } from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Login from './Login';
-import Browse from './Browse';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from "./Login";
+import Browse from "./Browse";
 
-const Body = () => {
+const appRouter = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/browse",
+      element: <Browse />,
+    },
+  ],
+  { basename: "/NetflixGPT" }
+);
 
-    const appRouter = createBrowserRouter([
-        {
-            path: "/",
-            element: <Login />
-        },
-        {
-            path: "/browse",
-            element: <Browse />
-        }
-    ]);
+const Body = () => (
+  <div>
+    <RouterProvider router={appRouter} />
+  </div>
+);
 
-  return (
-    <div>
-        <RouterProvider router={appRouter} />
-    </div>
-  )
-}
-
-export default Body
+export default Body;
