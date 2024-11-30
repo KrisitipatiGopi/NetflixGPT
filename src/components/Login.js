@@ -12,15 +12,12 @@ import { addUser } from "../utils/userSlice";
 import Header from "./Header";
 import { background_url } from "../utils/constants";
 
-
-
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
 
   const name = useRef(null);
-
   const email = useRef(null);
   const password = useRef(null);
 
@@ -45,15 +42,16 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
+              name.current.value = "";
+              email.current.value = "";
+              password.current.value = "";
             })
             .catch((error) => {
               setErrorMessage(error.message);
             });
-          console.log(user);
         })
         .catch((error) => {
-          const error1 = error.message;
-          setErrorMessage(error1);
+          setErrorMessage(error.message);
         });
     } else {
       signInWithEmailAndPassword(
@@ -61,13 +59,12 @@ const Login = () => {
         email.current.value,
         password.current.value
       )
-        .then((userCredential) => {
-          const user = userCredential.user;
-          //console.log(user);
+        .then(() => {
+          email.current.value = "";
+          password.current.value = "";
         })
         .catch((error) => {
-          const error1 = error.message;
-          setErrorMessage(error1);
+          setErrorMessage(error.message);
         });
     }
   };

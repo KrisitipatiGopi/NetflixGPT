@@ -24,6 +24,10 @@ export const translations = {
     topRated: "Top Rated",
     upComing: "Upcoming",
     popular: "Popular",
+    gptSearch: "Search",
+    whatToWatch: "What do you want to watch today?",
+    homePage: "Home Page",
+    search: "Search"
   },
   hi: {
     welcome: "स्वागत है",
@@ -34,6 +38,10 @@ export const translations = {
     popular: "लोकप्रिय",
     topRated: "सर्वश्रेष्ठ रेटेड",
     upComing: "आगामी",
+    gptSearch: "खोजें",
+    whatToWatch: "आज आप क्या देखना चाहते हैं?",
+    homePage: "मुख्य पृष्ठ",
+    search: "खोज"
   },
   te: {
     welcome: "స్వాగతం",
@@ -41,10 +49,16 @@ export const translations = {
     play: "ప్లే",
     moreInfo: "మరింత సమాచారం",
     nowPlaying: "ఇప్పుడే ప్రదర్శన",
-    popular: "ప్రసిద్ధమైనవి",  
+    popular: "ప్రసిద్ధమైనవి",
     topRated: "అత్యుత్తమ రేటింగ్",
-    upComing: "రాబోయేవి", 
+    upComing: "రాబోయేవి",
+    gptSearch: "శోధన",
+    whatToWatch: "ఈ రోజు మీరు ఏమి చూడాలని అనుకుంటున్నారు?",
+    homePage: "హోమ్ పేజీ",
+    search: "శోధన"
   },
 };
 
+
+export const openai_apiKey = "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"
  

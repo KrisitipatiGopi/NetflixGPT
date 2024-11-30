@@ -9,7 +9,7 @@ const VideoContainer = () => {
   const dispatch = useDispatch();
   const movieData = useSelector((store) => store.movies?.nowPlayingMovies?.[0]);
   const movieKey = useSelector((store) => store.movies?.trailers?.[0]?.key);
-  const selectedLanguage = useSelector((store) => store.lang?.currentLanguage)
+  const selectedLanguage = useSelector((store) => store.lang?.currentLanguage);
   const movieId = movieData?.id;
 
   useEffect(() => {
@@ -35,9 +35,9 @@ const VideoContainer = () => {
         ></iframe>
       </div>
       <div className="relative z-10 ml-20 py-[14%] gap-4 p-2 space-y-4 text-white">
-        <h1 className="text-3xl font-bold">{movieData.title}</h1>
-        <p className="w-1/4">{movieData.overview}</p>
-        <div className="flex space-x-5">
+        <h1 className="text-3xl font-bold mt-36">{movieData.title}</h1>
+        <p className="w-1/4 hidden md:block">{movieData.overview}</p>
+        <div className="space-x-5">
           <button className="px-4 py-2 bg-transparent border border-white text-white rounded-md hover:opacity-60">
             ⯈{translations[selectedLanguage].play}
           </button>

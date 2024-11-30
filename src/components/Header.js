@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { logo_url } from "../utils/constants";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
@@ -7,16 +7,24 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { setLanguage } from "../utils/languageSlice";
 import { translations } from "../utils/constants";
+import { toggleShowGptSearch } from "../utils/gptSlice";
+import { HiMenu } from "react-icons/hi"; 
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  const selectedLanguage = useSelector((store) => store.lang?.currentLanguage)
+  const selectedLanguage = useSelector((store) => store.lang?.currentLanguage);
+  const showGPT = useSelector((store) => store.gpt?.showGptSearch);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   const handleCurrentLanguage = (e) => {
-    dispatch(setLanguage(e.target.value))
-  }
+    dispatch(setLanguage(e.target.value));
+  };
+
+  const handleGptToggle = () => {
+    dispatch(toggleShowGptSearch());
+  };
 
   const handleSignOut = () => {
     signOut(auth)
@@ -52,30 +60,71 @@ const Header = () => {
       <div>
         <img src={logo_url} alt="Logo" className="w-32 md:w-40" />
       </div>
-      <div>
+      <div className="flex items-center space-x-5">
         {user ? (
-          <div className="flex mr-10 p-4 space-x-5">
-            <select
-              className="border border-white-300 bg-black rounded-md text-white p-2 focus:outline-none focus:ring-2"
-              onChange={handleCurrentLanguage}
-            >
-              <option value="en">En</option>
-              <option value="hi">हिं</option>
-              <option value="te">తె</option>
-            </select>
-
-            <button
-              className="bg-black-600 border border-white-300 text-white px-8 rounded-md hover:bg-black-10 hover:text-white transition"
-              onClick={handleSignOut}
-            >
-              {translations[selectedLanguage].logout}
-            </button>
-          </div>
+          <>
+            <div className="hidden md:flex space-x-5">
+              <button
+                className="border border-white-300 bg-transparent rounded-md text-white p-2 focus:outline-none focus:ring-2"
+                onClick={handleGptToggle}
+              >
+                {showGPT
+                  ? translations[selectedLanguage].homePage
+                  : translations[selectedLanguage].gptSearch}
+              </button>
+              <select
+                className="border border-white-300 bg-black rounded-md text-white p-2 focus:outline-none focus:ring-2"
+                onChange={handleCurrentLanguage}
+              >
+                <option value="en">En</option>
+                <option value="hi">हिं</option>
+                <option value="te">తె</option>
+              </select>
+              <button
+                className="bg-black-600 border border-white-300 text-white px-8 rounded-md hover:bg-black-10 hover:text-white transition"
+                onClick={handleSignOut}
+              >
+                {translations[selectedLanguage].logout}
+              </button>
+            </div>
+            <div className="md:hidden">
+              <HiMenu
+                size={30}
+                className="text-white cursor-pointer"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              />
+            </div>
+          </>
         ) : (
-          <div>
-          </div>
+          <div></div>
         )}
       </div>
+      {isMenuOpen && (
+        <div className="absolute top-14 right-4 bg-black bg-opacity-30 border items-center justify-center border-white text-white rounded-md p-4 shadow-lg flex flex-col space-y-4 md:hidden">
+          <button
+            className="bg-transparent rounded-md text-white p-2 focus:outline-none focus:ring-2"
+            onClick={handleGptToggle}
+          >
+            {showGPT
+              ? translations[selectedLanguage].homePage
+              : translations[selectedLanguage].gptSearch}
+          </button>
+          <select
+            className=" bg-black rounded-md text-white cursor-pointer w-14 p-2 focus:outline-none focus:ring-2"
+            onChange={handleCurrentLanguage}
+          >
+            <option value="en">En</option>
+            <option value="hi">हिं</option>
+            <option value="te">తె</option>
+          </select>
+          <button
+            className="bg-black-600 text-white px-8 rounded-md hover:bg-black-10 hover:text-white transition"
+            onClick={handleSignOut}
+          >
+            {translations[selectedLanguage].logout}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
