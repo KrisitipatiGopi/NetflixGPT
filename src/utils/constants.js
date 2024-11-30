@@ -60,5 +60,5 @@ export const translations = {
 };
 
 
-export const openai_apiKey = "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"
+
  
